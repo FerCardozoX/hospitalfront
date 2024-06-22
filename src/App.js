@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate  } from 'react-router-dom';
 import Login from './components/Login';
 import MenuMedico from './components/MenuMedico';
 import MenuAdmin from './components/MenuAdmin';
@@ -17,6 +17,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Navigate to="/Login" replace />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/menu-medico" element={<MenuMedico />} />
         <Route path="/menu-admin" element={<MenuAdmin />} />
