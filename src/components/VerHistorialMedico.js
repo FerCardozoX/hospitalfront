@@ -1,57 +1,19 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import './VerHistorialMedico.css';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function VerHistorialMedico() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [pacientes, setPacientes] = useState([
-    { apellido: 'Gómez', nombre: 'Juan', dni: '12345678' },
-    { apellido: 'Pérez', nombre: 'Ana', dni: '87654321' },
-  ]);
-  const history = useHistory();
+  const navigate = useNavigate();
 
-  const handleSearch = () => {
-    // Aquí iría la lógica de búsqueda en la base de datos
-  };
+  // Lógica del componente aquí
 
-  const handleView = (dni) => {
-    history.push(`/ver-historial/${dni}`);
+  const goBack = () => {
+    navigate(-1); // Navega hacia atrás en el historial
   };
 
   return (
-    <div className="historial-container">
-      <h2>Historial Médico</h2>
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Buscar por apellido, nombre o DNI"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button onClick={handleSearch}>Buscar</button>
-      </div>
-      <table className="patients-table">
-        <thead>
-          <tr>
-            <th>Apellido</th>
-            <th>Nombre</th>
-            <th>DNI</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {pacientes.map((paciente) => (
-            <tr key={paciente.dni}>
-              <td>{paciente.apellido}</td>
-              <td>{paciente.nombre}</td>
-              <td>{paciente.dni}</td>
-              <td>
-                <button onClick={() => handleView(paciente.dni)}>Ver</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div>
+      {/* Contenido del componente */}
+      <button onClick={goBack}>Volver</button>
     </div>
   );
 }

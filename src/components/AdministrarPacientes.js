@@ -1,36 +1,53 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import './AdministrarPacientes.css';
+import { useNavigate } from 'react-router-dom';
+
+const mockPacientes = [
+  { id: 1, nombre: 'Juan', apellido: 'Perez', dni: '12345678' },
+  { id: 2, nombre: 'María', apellido: 'González', dni: '87654321' },
+  { id: 3, nombre: 'Pedro', apellido: 'López', dni: '56781234' },
+];
 
 function AdministrarPacientes() {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
-  const [pacientes, setPacientes] = useState([
-    { apellido: 'Gómez', nombre: 'Juan', dni: '12345678' },
-    { apellido: 'Pérez', nombre: 'Ana', dni: '87654321' },
-  ]);
-  const history = useHistory();
+  const [filteredPacientes, setFilteredPacientes] = useState(mockPacientes);
 
   const handleSearch = () => {
-    // Lógica para buscar pacientes en la base de datos
+    const filtered = mockPacientes.filter(
+      paciente =>
+        paciente.apellido.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        paciente.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        paciente.dni.includes(searchTerm)
+    );
+    setFilteredPacientes(filtered);
   };
 
-  const handleView = (dni) => {
-    history.push(`/administrar-paciente/${dni}`);
+  const handleKeyPress = event => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
   };
 
-  const handleCreate = () => {
-    history.push('/crear-paciente');
+  const viewPaciente = id => {
+    navigate(`/ver-paciente/${id}`);
+  };
+  const goBack = () => {
+    navigate('/menu-admin');
   };
 
   return (
-    <div className="pacientes-container">
-      <h2>Administrar Pacientes</h2>
+    <div>
+      <button onClick={goBack}>Volver</button>
+      <h1>Administrar Pacientes</h1>
+      <button onClick={() => navigate('/crear-paciente')}>Crear Nuevo Paciente</button>
+      <h2>    </h2>
       <div className="search-container">
         <input
           type="text"
           placeholder="Buscar por apellido, nombre o DNI"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={e => setSearchTerm(e.target.value)}
+          onKeyPress={handleKeyPress}
         />
         <button onClick={handleSearch}>Buscar</button>
       </div>
@@ -40,23 +57,18 @@ function AdministrarPacientes() {
             <th>Apellido</th>
             <th>Nombre</th>
             <th>DNI</th>
-            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          {pacientes.map((paciente) => (
-            <tr key={paciente.dni}>
+          {filteredPacientes.map(paciente => (
+            <tr key={paciente.id} onClick={() => viewPaciente(paciente.id)}>
               <td>{paciente.apellido}</td>
               <td>{paciente.nombre}</td>
               <td>{paciente.dni}</td>
-              <td>
-                <button onClick={() => handleView(paciente.dni)}>Ver</button>
-              </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <button onClick={handleCreate}>Crear Paciente</button>
     </div>
   );
 }
