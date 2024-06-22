@@ -1,0 +1,42 @@
+.menu-container {
+    padding: 20px;
+  }
+  
+  .menu-header {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .profile-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .menu-card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+  }
+  
+  .menu-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .menu-option {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    text-decoration: none;
+    border-radius: 4px;
+    flex: 1 1 30%;
+    text-align: center;
+  }
+  

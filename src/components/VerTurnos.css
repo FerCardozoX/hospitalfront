@@ -1,0 +1,34 @@
+.turnos-container {
+    padding: 20px;
+  }
+  
+  .filter-container {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .filter-container input {
+    flex: 1;
+    padding: 8px;
+    margin-right: 10px;
+  }
+  
+  .filter-container button {
+    padding: 8px;
+  }
+  
+  .turnos-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .turnos-table th,
+  .turnos-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .turnos-table th {
+    background-color: #f2f2f2;
+  }
+  
