@@ -66,31 +66,31 @@ const styles = {
   },
 };
 
-function AdministrarMedicos() {
+function AdministrarUsuarios() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
-  const [medicos, setmedicos] = useState([]);
-  const [filteredmedicos, setFilteredmedicos] = useState([]);
+  const [Usuarios, setUsuarios] = useState([]);
+  const [filteredUsuarios, setFilteredUsuarios] = useState([]);
 
   useEffect(() => {
-    axios.get('https://proyectohospital.onrender.com/GestionHospital/getmedicos/')
+    axios.get('https://proyectohospital.onrender.com/GestionHospital/getUsuarios/')
       .then(response => {
-        setmedicos(response.data);
-        setFilteredmedicos(response.data);
+        setUsuarios(response.data);
+        setFilteredUsuarios(response.data);
       })
       .catch(error => {
-        console.error('Error al obtener los medicos:', error);
+        console.error('Error al obtener los Usuarios:', error);
       });
   }, []);
 
   const handleSearch = () => {
-    const filtered = medicos.filter(
-      medico =>
-        medico.apellido.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        medico.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        medico.dni.includes(searchTerm)
+    const filtered = Usuarios.filter(
+      Usuario =>
+        Usuario.apellido.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        Usuario.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        Usuario.dni.includes(searchTerm)
     );
-    setFilteredmedicos(filtered);
+    setFilteredUsuarios(filtered);
   };
 
   const handleKeyPress = event => {
@@ -98,10 +98,7 @@ function AdministrarMedicos() {
       handleSearch();
     }
   };
-
-  const viewmedico = dni => {
-    navigate(`/ver-medico/${dni}`);
-  };
+  
 
   const goBack = () => {
     navigate('/menu-admin');
@@ -110,13 +107,12 @@ function AdministrarMedicos() {
   return (
     <div style={styles.container}>
       <button style={styles.buttonBack} onClick={goBack}>Volver</button>
-      <h1 style={styles.header}>Administrar medicos</h1>
-      <button style={styles.button} onClick={() => navigate('/crear-medico')}>Crear Nuevo medico</button>
+      <h1 style={styles.header}>Administrar Usuarios</h1>
       <div style={styles.searchContainer}>
         <input
           style={styles.input}
           type="text"
-          placeholder="Buscar por apellido, nombre, especialidad o DNI"
+          placeholder="Buscar usuario"
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
           onKeyPress={handleKeyPress}
@@ -126,23 +122,15 @@ function AdministrarMedicos() {
       <table style={styles.table}>
         <thead>
           <tr>
-            <th style={styles.th}>Apellido</th>
-            <th style={styles.th}>Nombre</th>
-            <th style={styles.th}>DNI</th>
-            <th style={styles.th}>Especialidad</th>
+            <th style={styles.th}>Usuario</th>
+            <th style={styles.th}>Contraseña</th>
           </tr>
         </thead>
         <tbody>
-          {filteredmedicos.map(medico => (
-            <tr
-              key={medico.id}
-              onClick={() => viewmedico(medico.dni)}
-              style={styles.trClickable}
-            >
-              <td style={styles.td}>{medico.apellido}</td>
-              <td style={styles.td}>{medico.nombre}</td>
-              <td style={styles.td}>{medico.dni}</td>
-              <td style={styles.td}>{medico.especialidad}</td>
+          {filteredUsuarios.map(Usuario => (
+            <tr>  
+              <td style={styles.td}>{Usuario.usuario}</td>
+              <td style={styles.td}>{Usuario.contraseña}</td>
             </tr>
           ))}
         </tbody>
@@ -151,4 +139,4 @@ function AdministrarMedicos() {
   );
 }
 
-export default AdministrarMedicos;
+export default AdministrarUsuarios;

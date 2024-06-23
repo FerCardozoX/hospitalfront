@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from './health.png';
+import axios from 'axios';
 
 const styles = {
   loginContainer: {
@@ -65,17 +66,25 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    //  lógica para autenticar al usuario
-    if (username === 'medico') {
-      navigate('/menu-medico');
-    } else if (username === 'admin') {
-      navigate('/menu-admin');
-    }
-    else {
-      navigate('/menu-admin');
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    axios.post('https://proyectohospital.onrender.com/GestionHospital/login/', 
+      { usuario: username, 
+        contraseña: password })
+      .then((response) => {
+        const data = response.data;
+        const idRol = data.rol.idRol; // Accede al idRol a través del objeto rol
+        if (idRol === 2) {
+          navigate('/menu-admin');
+        } else if (idRol === 1) {
+          navigate('/menu-medico');
+        }
+      })
+      .catch((error) => {
+        console.error('Error al iniciar sesión:', error);
+        alert('Usuario o contraseña incorrectos');
+      });
   };
 
   return (

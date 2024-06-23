@@ -1,51 +1,76 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+
+const styles = {
+  container: {
+    maxWidth: '800px',
+    margin: '0 auto',
+    padding: '20px',
+    fontFamily: 'Arial, sans-serif',
+  },
+  button: {
+    padding: '10px 20px',
+    borderRadius: '5px',
+    border: 'none',
+    backgroundColor: '#fc4c4e',
+    color: '#fff',
+    cursor: 'pointer',
+    margin: '10px 0',
+  },
+  heading: {
+    fontSize: '24px',
+    marginBottom: '20px',
+  },
+  patientData: {
+    marginBottom: '10px',
+  },
+  loading: {
+    fontStyle: 'italic',
+    color: '#888',
+  },
+};
 
 function VisualizarPaciente() {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { dni } = useParams();
   const [paciente, setPaciente] = useState(null);
 
   useEffect(() => {
-    // Aquí deberías hacer una solicitud al servidor para obtener los datos del paciente con el ID proporcionado
-    // Supongamos que los datos del paciente se obtienen correctamente y se almacenan en el estado
-    const pacienteEjemplo = {
-      idPaciente: id,
-      nombre: 'Nombre del paciente',
-      apellido: 'Apellido del paciente',
-      dni: '12345678',
-      email: 'correo@example.com',
-      fecha_nacimiento: '2000-01-01',
-      genero: 'masculino',
-      telefono: '123456789',
-      contacto_emergencia: '987654321',
-    };
-    setPaciente(pacienteEjemplo);
-  }, [id]);
-
+    axios.get(`https://proyectohospital.onrender.com/GestionHospital/buscarPacientePorDni/${dni}/`)
+      .then(response => {
+        setPaciente(response.data);
+      })
+      .catch(error => {
+        console.error('Error al obtener los datos del paciente:', error);
+      });
+  });
+  
   const goBack = () => {
     navigate('/administrar-pacientes');
   };
 
-  if (!paciente) {
-    return <div>Cargando...</div>;
-  }
+
 
   return (
-    <div>
-      <button onClick={goBack}>Volver</button>
-      <h1>Visualizar Paciente</h1>
-      <div>
-        <p>ID: {paciente.idPaciente}</p>
-        <p>Nombre: {paciente.nombre}</p>
-        <p>Apellido: {paciente.apellido}</p>
-        <p>DNI: {paciente.dni}</p>
-        <p>Email: {paciente.email}</p>
-        <p>Fecha de Nacimiento: {paciente.fecha_nacimiento}</p>
-        <p>Género: {paciente.genero}</p>
-        <p>Teléfono: {paciente.telefono}</p>
-        <p>Contacto de Emergencia: {paciente.contacto_emergencia}</p>
-      </div>
+    <div style={styles.container}>
+      <button style={styles.button} onClick={goBack}>Volver</button>
+      <h1 style={styles.heading}>Visualizar Paciente</h1>
+      {paciente ? (
+        <div>
+          <p style={styles.patientData}>ID: {paciente.idPaciente}</p>
+          <p style={styles.patientData}>Nombre: {paciente.nombre}</p>
+          <p style={styles.patientData}>Apellido: {paciente.apellido}</p>
+          <p style={styles.patientData}>DNI: {paciente.dni}</p>
+          <p style={styles.patientData}>Email: {paciente.email}</p>
+          <p style={styles.patientData}>Fecha de Nacimiento: {paciente.fecha_nacimiento}</p>
+          <p style={styles.patientData}>Género: {paciente.genero}</p>
+          <p style={styles.patientData}>Teléfono: {paciente.telefono}</p>
+          <p style={styles.patientData}>Contacto de Emergencia: {paciente.contacto_emergencia}</p>
+        </div>
+      ) : (
+        <p style={styles.loading}>Cargando...</p>
+      )}
     </div>
   );
 }

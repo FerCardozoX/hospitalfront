@@ -66,31 +66,31 @@ const styles = {
   },
 };
 
-function AdministrarMedicos() {
+function AdministrarAdministrativos() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
-  const [medicos, setmedicos] = useState([]);
-  const [filteredmedicos, setFilteredmedicos] = useState([]);
+  const [Administrativos, setAdministrativos] = useState([]);
+  const [filteredAdministrativos, setFilteredAdministrativos] = useState([]);
 
   useEffect(() => {
-    axios.get('https://proyectohospital.onrender.com/GestionHospital/getmedicos/')
+    axios.get('https://proyectohospital.onrender.com/GestionHospital/getAdministrativos/')
       .then(response => {
-        setmedicos(response.data);
-        setFilteredmedicos(response.data);
+        setAdministrativos(response.data);
+        setFilteredAdministrativos(response.data);
       })
       .catch(error => {
-        console.error('Error al obtener los medicos:', error);
+        console.error('Error al obtener los Administrativos:', error);
       });
   }, []);
 
   const handleSearch = () => {
-    const filtered = medicos.filter(
-      medico =>
-        medico.apellido.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        medico.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        medico.dni.includes(searchTerm)
+    const filtered = Administrativos.filter(
+      Administrativo =>
+        Administrativo.apellido.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        Administrativo.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        Administrativo.dni.includes(searchTerm)
     );
-    setFilteredmedicos(filtered);
+    setFilteredAdministrativos(filtered);
   };
 
   const handleKeyPress = event => {
@@ -99,8 +99,8 @@ function AdministrarMedicos() {
     }
   };
 
-  const viewmedico = dni => {
-    navigate(`/ver-medico/${dni}`);
+  const viewAdministrativo = dni => {
+    navigate(`/ver-Administrativo/${dni}`);
   };
 
   const goBack = () => {
@@ -110,13 +110,13 @@ function AdministrarMedicos() {
   return (
     <div style={styles.container}>
       <button style={styles.buttonBack} onClick={goBack}>Volver</button>
-      <h1 style={styles.header}>Administrar medicos</h1>
-      <button style={styles.button} onClick={() => navigate('/crear-medico')}>Crear Nuevo medico</button>
+      <h1 style={styles.header}>Administrar Administrativos</h1>
+      <button style={styles.button} onClick={() => navigate('/crear-Administrativo')}>Crear Nuevo Administrativo</button>
       <div style={styles.searchContainer}>
         <input
           style={styles.input}
           type="text"
-          placeholder="Buscar por apellido, nombre, especialidad o DNI"
+          placeholder="Buscar por apellido, nombre o DNI"
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
           onKeyPress={handleKeyPress}
@@ -129,20 +129,18 @@ function AdministrarMedicos() {
             <th style={styles.th}>Apellido</th>
             <th style={styles.th}>Nombre</th>
             <th style={styles.th}>DNI</th>
-            <th style={styles.th}>Especialidad</th>
           </tr>
         </thead>
         <tbody>
-          {filteredmedicos.map(medico => (
+          {filteredAdministrativos.map(Administrativo => (
             <tr
-              key={medico.id}
-              onClick={() => viewmedico(medico.dni)}
+              key={Administrativo.id}
+              onClick={() => viewAdministrativo(Administrativo.dni)}
               style={styles.trClickable}
             >
-              <td style={styles.td}>{medico.apellido}</td>
-              <td style={styles.td}>{medico.nombre}</td>
-              <td style={styles.td}>{medico.dni}</td>
-              <td style={styles.td}>{medico.especialidad}</td>
+              <td style={styles.td}>{Administrativo.apellido}</td>
+              <td style={styles.td}>{Administrativo.nombre}</td>
+              <td style={styles.td}>{Administrativo.dni}</td>
             </tr>
           ))}
         </tbody>
@@ -151,4 +149,4 @@ function AdministrarMedicos() {
   );
 }
 
-export default AdministrarMedicos;
+export default AdministrarAdministrativos;

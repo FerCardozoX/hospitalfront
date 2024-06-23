@@ -14,6 +14,11 @@ import CrearPaciente from './components/CrearPaciente';
 import VisualizarPaciente from './components/VisualizarPaciente';
 import CrearMedico from './components/CrearMedico';
 import VisualizarMedico from './components/VisualizarMedico';
+import AdministrarAdministrativos from './components/AdministrarAdministrativos';
+import CrearAdministrativo from './components/CrearAdministrativo';
+import VisualizarAdministrativo from './components/VisualizarAdministrativo';
+import AdministrarUsuarios from './components/AdministrarUsuarios';
+import AgendarCita from './components/AgendarCita';
 
 function App() {
   return (
@@ -23,12 +28,17 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/menu-medico" element={<MenuMedico />} />
         <Route path="/menu-admin" element={<MenuAdmin />} />
+        <Route path="/Agendar-Cita" element={<AgendarCita />} />
         <Route path="/administrar-pacientes" element={<AdministrarPacientes />} />
         <Route path="/crear-paciente" element={<CrearPaciente />} />
-        <Route path="/ver-paciente" element={<VisualizarPaciente />} />
+        <Route path="/ver-paciente/:dni" element={<VisualizarPaciente />} />
         <Route path="/administrar-medicos" element={<AdministrarMedicos />} />
         <Route path="/crear-medico" element={<CrearMedico />} />
-        <Route path="/ver-medico" element={<VisualizarMedico />} />
+        <Route path="/ver-medico/:dni" element={<VisualizarMedico />} />
+        <Route path="/administrar-admins" element={<AdministrarAdministrativos />} />
+        <Route path="/crear-Administrativo" element={<CrearAdministrativo />} />
+        <Route path="/ver-Administrativo/:dni" element={<VisualizarAdministrativo />} />
+        <Route path="/administrar-usuarios" element={<AdministrarUsuarios />} />
         <Route path="/administrar-turnos" element={<AdministrarTurnos />} />
         <Route path="/ver-historial-medico" element={<VerHistorialMedico />} />
         <Route path="/cargar-tratamiento" element={<CargarTratamiento />} />

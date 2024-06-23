@@ -95,8 +95,17 @@ function MenuAdmin() {
           <div style={styles.menuOption} onClick={() => navigate('/administrar-medicos')}>
             Administrar Médicos
           </div>
+          <div style={styles.menuOption} onClick={() => navigate('/administrar-admins')}>
+            Administrar Personal Administrativo
+          </div>
+          <div style={styles.menuOption} onClick={() => navigate('/administrar-usuarios')}>
+            Administrar usuarios
+          </div>
           <div style={styles.menuOption} onClick={() => navigate('/administrar-turnos')}>
             Administrar Turnos
+          </div>
+          <div style={styles.menuOption} onClick={() => navigate('/Agendar-Cita')}>
+            Agendar Cita
           </div>
           <div style={styles.menuOption} onClick={() => navigate('/ver-historial-medico')}>
             Ver Historial Médico

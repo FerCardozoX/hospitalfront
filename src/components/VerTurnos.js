@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './VerTurnos.css';
+import axios from 'axios';
 
 function VerTurnos() {
-  const [turnos, setTurnos] = useState([
-    // Aquí irían los turnos obtenidos de la base de datos
-    { id: 1, paciente: 'Juan Gómez', fecha: '2022-01-01', hora: '10:00' },
-  ]);
+  const [turnos, setTurnos] = useState([]);
   const [fechaFiltro, setFechaFiltro] = useState('');
 
-  const handleFilter = () => {
-    // Lógica para filtrar turnos en la base de datos
+  const fetchCitas = async () => {
+    try {
+      const response = await axios.get('https://proyectohospital.onrender.com/GestionHospital/getcitas/');
+      setTurnos(response.data); // Suponiendo que el servidor devuelve un array de citas
+    } catch (error) {
+      console.error('Error al obtener las citas:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCitas();
+  }, []); // Se ejecuta solo una vez al cargar el componente
+
+  const handleFilter = async () => {
+    try {
+      const response = await axios.get(`https://proyectohospital.onrender.com/GestionHospital/getcitas/`);
+      setTurnos(response.data); 
+    } catch (error) {
+      console.error('Error al filtrar las citas:', error);
+    }
   };
 
   return (
@@ -34,9 +50,9 @@ function VerTurnos() {
         <tbody>
           {turnos.map((turno) => (
             <tr key={turno.id}>
-              <td>{turno.paciente}</td>
-              <td>{turno.fecha}</td>
-              <td>{turno.hora}</td>
+              <td>{turno.idPaciente_id}</td>
+              <td>{turno.fechaCita}</td>
+              <td>{turno.estado}</td>
             </tr>
           ))}
         </tbody>

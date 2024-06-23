@@ -99,9 +99,10 @@ function AdministrarPacientes() {
     }
   };
 
-  const viewPaciente = id => {
-    navigate(`/ver-paciente/${id}`);
+  const viewPaciente = dni => {
+    navigate(`/ver-paciente/${dni}`);
   };
+  
 
   const goBack = () => {
     navigate('/menu-admin');
@@ -134,10 +135,11 @@ function AdministrarPacientes() {
         <tbody>
           {filteredPacientes.map(paciente => (
             <tr
-              key={paciente.id}
-              onClick={() => viewPaciente(paciente.id)}
-              style={styles.trClickable}
-            >
+            key={paciente.id}
+            onClick={() => viewPaciente(paciente.dni)}
+            style={styles.trClickable}
+          >
+                    
               <td style={styles.td}>{paciente.apellido}</td>
               <td style={styles.td}>{paciente.nombre}</td>
               <td style={styles.td}>{paciente.dni}</td>
