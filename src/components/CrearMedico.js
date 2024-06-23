@@ -129,10 +129,11 @@ function CrearMedico() {
         <label style={styles.label}>
           Género:
           <select style={styles.select} name="genero" value={nuevoMedico.genero} onChange={handleChange}>
-            <option value="masculino">Masculino</option>
-            <option value="femenino">Femenino</option>
-            <option value="otro">Otro</option>
-          </select>
+                        <option value="">Seleccione género</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
+                    </select>
         </label>
         <label style={styles.label}>
           Teléfono:

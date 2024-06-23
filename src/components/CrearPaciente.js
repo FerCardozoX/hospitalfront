@@ -82,7 +82,7 @@ function CrearPaciente() {
         })
         .catch(error => {
             console.error('Error al crear el paciente:', error);
-            alert('Error al crear el paciente');
+            alert('Error al crear el paciente', error);
         });
 
     setNuevoPaciente({
@@ -118,7 +118,7 @@ function CrearPaciente() {
           DNI:
           <input style={styles.input} type="text" name="dni" value={nuevoPaciente.dni} onChange={handleChange} />
         </label>
-        <label style={styles.label}>
+        <label style={styles.label}>  
           Email:
           <input style={styles.input} type="email" name="email" value={nuevoPaciente.email} onChange={handleChange} />
         </label>
@@ -129,10 +129,11 @@ function CrearPaciente() {
         <label style={styles.label}>
           Género:
           <select style={styles.select} name="genero" value={nuevoPaciente.genero} onChange={handleChange}>
-            <option value="masculino">Masculino</option>
-            <option value="femenino">Femenino</option>
-            <option value="otro">Otro</option>
-          </select>
+                        <option value="">Seleccione género</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
+                    </select>
         </label>
         <label style={styles.label}>
           Teléfono:
