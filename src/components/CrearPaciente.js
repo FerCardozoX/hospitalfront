@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const styles = {
     formContainer: {
@@ -33,13 +34,20 @@ const styles = {
       padding: '8px 12px',
       borderRadius: '5px',
       border: 'none',
-      backgroundColor: '#007bff',
+      backgroundColor: '#fc4c4e',
       color: '#fff',
       cursor: 'pointer',
     },
-    h1:{
-        
-    }
+    buttonBack: {
+      padding: '10px 20px',
+      borderRadius: '5px',
+      border: 'none',
+      backgroundColor: '#fc4c4e',
+      color: '#fff', 
+      cursor: 'pointer',
+      margin: '5px',
+      alignSelf: 'flex-start',  // Alinea el botón a la izquierda
+    },
   };
 
 function CrearPaciente() {
@@ -64,23 +72,30 @@ function CrearPaciente() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    // Aquí deberías enviar los datos del nuevo paciente al servidor
     console.log('Nuevo paciente:', nuevoPaciente);
-    // Simulamos que se agrega el paciente a la lista
-    // Esto debería hacerse con una solicitud HTTP al servidor
+
+    axios.post('https://proyectohospital.onrender.com/GestionHospital/postCrearPaciente/', nuevoPaciente)
+        .then(response => {
+            console.log('Paciente creado:', response.data);
+            alert('Paciente creado exitosamente');
+            navigate('/administrar-pacientes');
+        })
+        .catch(error => {
+            console.error('Error al crear el paciente:', error);
+            alert('Error al crear el paciente');
+        });
+
     setNuevoPaciente({
-      nombre: '',
-      apellido: '',
-      dni: '',
-      email: '',
-      fecha_nacimiento: '',
-      genero: '',
-      telefono: '',
-      contacto_emergencia: '',
+        nombre: '',
+        apellido: '',
+        dni: '',
+        email: '',
+        fecha_nacimiento: '',
+        genero: '',
+        telefono: '',
+        contacto_emergencia: '',
     });
-    alert('Paciente creado exitosamente');
-    navigate('/administrar-pacientes');
-  };
+};
 
   const goBack = () => {
     navigate('/administrar-pacientes');
@@ -89,7 +104,7 @@ function CrearPaciente() {
   return (
     <div>
      <h1 style={{ textAlign: 'center' }}>Crear Nuevo Paciente</h1>
-     <button onClick={goBack}>Volver</button>
+     <button style={styles.buttonBack} onClick={goBack}>Volver</button>
       <form style={styles.formContainer} onSubmit={handleSubmit}>
         <label style={styles.label}>
           Nombre:

@@ -12,6 +12,8 @@ import CargarHospitalizacion from './components/CargarHospitalizacion';
 import VerTurnos from './components/VerTurnos';
 import CrearPaciente from './components/CrearPaciente';
 import VisualizarPaciente from './components/VisualizarPaciente';
+import CrearMedico from './components/CrearMedico';
+import VisualizarMedico from './components/VisualizarMedico';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/crear-paciente" element={<CrearPaciente />} />
         <Route path="/ver-paciente" element={<VisualizarPaciente />} />
         <Route path="/administrar-medicos" element={<AdministrarMedicos />} />
+        <Route path="/crear-medico" element={<CrearMedico />} />
+        <Route path="/ver-medico" element={<VisualizarMedico />} />
         <Route path="/administrar-turnos" element={<AdministrarTurnos />} />
         <Route path="/ver-historial-medico" element={<VerHistorialMedico />} />
         <Route path="/cargar-tratamiento" element={<CargarTratamiento />} />
