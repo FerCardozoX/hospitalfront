@@ -135,6 +135,7 @@ function CrearPaciente() {
                         <option value="otro">Otro</option>
                     </select>
         </label>
+        
         <label style={styles.label}>
           Teléfono:
           <input style={styles.input} type="text" name="telefono" value={nuevoPaciente.telefono} onChange={handleChange} />
