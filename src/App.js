@@ -19,6 +19,7 @@ import CrearAdministrativo from './components/CrearAdministrativo';
 import VisualizarAdministrativo from './components/VisualizarAdministrativo';
 import AdministrarUsuarios from './components/AdministrarUsuarios';
 import AgendarCita from './components/AgendarCita';
+import HistorialMedicoDetalle from './components/HistorialMedicoDetalle';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <Route path="/administrar-usuarios" element={<AdministrarUsuarios />} />
         <Route path="/administrar-turnos" element={<AdministrarTurnos />} />
         <Route path="/ver-historial-medico" element={<VerHistorialMedico />} />
+        <Route path="/historial/:pacienteId" element={<HistorialMedicoDetalle />} />
         <Route path="/cargar-tratamiento" element={<CargarTratamiento />} />
         <Route path="/cargar-hospitalizacion" element={<CargarHospitalizacion />} />
         <Route path="/ver-turnos" element={<VerTurnos />} />
