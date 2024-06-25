@@ -20,6 +20,9 @@ import VisualizarAdministrativo from './components/VisualizarAdministrativo';
 import AdministrarUsuarios from './components/AdministrarUsuarios';
 import AgendarCita from './components/AgendarCita';
 import HistorialMedicoDetalle from './components/HistorialMedicoDetalle';
+import AgregarTratamiento from './components/AgregarTratamiento';
+import AgregarDiagnostico from './components/AgregarDiagnostico';
+import AgregarHospitalizacion from './components/AgregarHospitalizacion';
 
 function App() {
   return (
@@ -46,6 +49,9 @@ function App() {
         <Route path="/cargar-tratamiento" element={<CargarTratamiento />} />
         <Route path="/cargar-hospitalizacion" element={<CargarHospitalizacion />} />
         <Route path="/ver-turnos" element={<VerTurnos />} />
+        <Route path="/agregar-tratamiento" element={<AgregarTratamiento />} />
+        <Route path="/agregar-diagnostico" element={<AgregarDiagnostico />} />
+        <Route path="/agregar-hospitalizacion" element={<AgregarHospitalizacion />} />
       </Routes>
     </Router>
   );

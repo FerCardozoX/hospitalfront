@@ -113,9 +113,6 @@ function MenuAdmin() {
           <div style={styles.menuOption} onClick={() => navigate('/cargar-hospitalizacion')}>
             Cargar Hospitalizaciones
           </div>
-          <div style={styles.menuOption} onClick={() => navigate('/generar-reporte-medico')}>
-            Generar Reporte Médico
-          </div>
         </div>
       </div>
       <div
