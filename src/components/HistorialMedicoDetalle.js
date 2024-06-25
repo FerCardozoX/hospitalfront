@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation,useNavigate} from 'react-router-dom';
-import { Document, Page, Text, View, StyleSheet, PDFViewer, Link } from '@react-pdf/renderer';
+import { Document, Page, Text, View } from '@react-pdf/renderer';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 
@@ -8,7 +8,8 @@ import { saveAs } from 'file-saver';
 function HistorialMedicoDetalle() {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { historial, paciente } = state;
+  const { historial, paciente, dni } = state;
+
 
   const styles = {
     container: {
@@ -131,14 +132,14 @@ function HistorialMedicoDetalle() {
           <Text>{historial.observaciones}</Text>
         </Page>
       </Document>
-    );
+    ); 
 
     const pdfBlob = new Blob([MyDocument], { type: 'application/pdf' });
     saveAs(pdfBlob, 'historial_medico.pdf');
   };
 
   const handleAgregarTratamiento = () => {
-    navigate(`/historial/${paciente.idPaciente}/agregar-tratamiento`);
+    navigate(`/historial/${paciente.idPaciente}/agregar-tratamiento`,  {state: { dniMedico: dni } });
   };
 
   const handleAgregarDiagnostico = () => {

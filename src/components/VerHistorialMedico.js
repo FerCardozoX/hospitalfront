@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation} from 'react-router-dom';
 
 function VerHistorialMedico() {
   const navigate = useNavigate();
   const [historiales, setHistoriales] = useState([]);
   const [pacientes, setPacientes] = useState([]);
   const [filtro, setFiltro] = useState('');
+  const location = useLocation();
+  const { username } = location.state;
 
+  
   useEffect(() => {
     async function fetchData() {
       try {
@@ -44,7 +47,8 @@ function VerHistorialMedico() {
     });
   
     if (paciente && historialEncontrado) {
-      navigate(`/historial/${pacienteId}`, { state: { historial: historialEncontrado, paciente } });
+      
+      navigate(`/historial/${pacienteId}`, { state: { historial: historialEncontrado, paciente, dni: username } });
     } else {
       console.error('Historial o paciente no encontrado.');
     }

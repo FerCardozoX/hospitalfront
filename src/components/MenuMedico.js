@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, } from 'react-router-dom';
+
 
 const styles = {
   menuContainer: {
@@ -71,6 +72,8 @@ function MenuAdmin() {
   const [profileButtonPos, setProfileButtonPos] = useState({ top: 0, left: 0 });
   const navigate = useNavigate();
   const profileButtonRef = useRef(null);
+  const location = useLocation();
+  const { username } = location.state;
 
   useEffect(() => {
     if (profileButtonRef.current) {
@@ -89,16 +92,10 @@ function MenuAdmin() {
       <div style={styles.menuCard}>
         <h2>Menú médico</h2>
         <div style={styles.menuOptions}>
-          <div style={styles.menuOption} onClick={() => navigate('/cargar-tratamiento')}>
-            Cargar tratamiento
-          </div>
-          <div style={styles.menuOption} onClick={() => navigate('/ver-historial-medico')}>
+          <div style={styles.menuOption} onClick={() => navigate('/ver-historial-medico',  { state: { username } } )}>
             Ver historial Médico
           </div>
-          <div style={styles.menuOption} onClick={() => navigate('/cargar-hospitalizacion')}>
-            Cargar Hospitalización
-          </div>
-          <div style={styles.menuOption} onClick={() => navigate('/ver-turnos')}>
+          <div style={styles.menuOption} onClick={() => navigate('/ver-turnos', { state: { username } })}>
             Ver Turnos
           </div>
         </div>
@@ -118,8 +115,8 @@ function MenuAdmin() {
             display: 'block',
           }}
         >
-          <div style={styles.dropdownButton} onClick={() => navigate('/mi-perfil')}>
-            Ver Perfil
+          <div style={styles.dropdownButton}>
+            {username}
           </div>
           <div style={styles.dropdownButton} onClick={handleLogout}>
             Cerrar Sesión

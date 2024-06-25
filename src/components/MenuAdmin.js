@@ -110,9 +110,6 @@ function MenuAdmin() {
           <div style={styles.menuOption} onClick={() => navigate('/ver-historial-medico')}>
             Ver Historial Médico
           </div>
-          <div style={styles.menuOption} onClick={() => navigate('/cargar-hospitalizacion')}>
-            Cargar Hospitalizaciones
-          </div>
         </div>
       </div>
       <div

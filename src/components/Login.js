@@ -78,7 +78,7 @@ const Login = () => {
         if (idRol === 2) {
           navigate('/menu-admin');
         } else if (idRol === 1) {
-          navigate('/menu-medico');
+          navigate('/menu-medico', { state: { username: username } });
         }
       })
       .catch((error) => {
