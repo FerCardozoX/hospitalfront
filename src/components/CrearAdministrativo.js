@@ -62,7 +62,7 @@ function CrearAdministrativo() {
     const { name, value } = event.target;
     setNuevoAdministrativo({ ...nuevoAdministrativo, [name]: value });
   };
-
+ 
   const handleSubmit = event => {
     event.preventDefault();
     console.log('Nuevo Admin:', nuevoAdministrativo);
