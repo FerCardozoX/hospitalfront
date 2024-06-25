@@ -73,7 +73,7 @@ function AdministrarAdministrativos() {
   const [filteredAdministrativos, setFilteredAdministrativos] = useState([]);
 
   useEffect(() => {
-    axios.get('https://proyectohospital.onrender.com/GestionHospital/getAdministrativos/')
+    axios.get('https://proyectohospital.onrender.com/GestionHospital/getadministrativos/')
       .then(response => {
         setAdministrativos(response.data);
         setFilteredAdministrativos(response.data);

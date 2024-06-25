@@ -71,7 +71,7 @@ function CrearAdministrativo() {
       .then(response => {
         console.log('Admin creado:', response.data);
         alert('Admin creado exitosamente');
-        navigate('/administrar-Administrativos');
+        navigate(-1);
       })
       .catch(error => {
         console.error('Error al crear el Admin:', error);

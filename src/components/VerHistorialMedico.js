@@ -85,8 +85,13 @@ function VerHistorialMedico() {
     }
   };
 
+  const handleClick = () => {
+    navigate(-1);
+  };
+
   return (
     <div>
+      <button onClick={handleClick}>Volver atrás</button>
       <h1 style={styles.title}>Historiales Médicos</h1>
       <input
         type="text"

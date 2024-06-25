@@ -1,7 +1,9 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate} from 'react-router-dom';
+
 
 function HistorialMedicoDetalle() {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const { historial, paciente } = state;
 
@@ -16,7 +18,7 @@ function HistorialMedicoDetalle() {
       fontSize: '24px',
       fontWeight: 'bold',
       marginBottom: '20px',
-    },
+    }, 
     sectionTitle: {
       fontSize: '20px',
       fontWeight: 'bold',
@@ -43,8 +45,13 @@ function HistorialMedicoDetalle() {
     return <div style={styles.container}>No hay historial disponible para este paciente.</div>;
   }
 
+  const handleClick = () => {
+    navigate(-1);
+  };
+
   return (
-    <div style={styles.container}>
+    <div style={styles.container}> 
+    <button onClick={handleClick}>Volver atrás</button>
       <h1 style={styles.title}>Detalle del Historial Médico</h1>
       <p><strong>Paciente:</strong> {paciente.nombre} {paciente.apellido}</p>
       <p><strong>DNI:</strong> {paciente.dni}</p>

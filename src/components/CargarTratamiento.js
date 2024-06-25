@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './CargarTratamiento.css';
+
 
 function CargarTratamiento() {
   const [tratamientos, setTratamientos] = useState([

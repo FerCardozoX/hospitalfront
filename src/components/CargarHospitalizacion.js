@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './CargarHospitalizacion.css';
+
 
 function CargarHospitalizacion() {
   const [dni, setDni] = useState('');
