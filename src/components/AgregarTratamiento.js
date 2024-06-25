@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
 import axios from 'axios';
 
 const AgregarTratamiento = ({ pacienteId }) => {
@@ -12,7 +11,7 @@ const AgregarTratamiento = ({ pacienteId }) => {
 
     const agregarTratamiento = async () => {
         try {
-            const response = await axios.post('https://proyectohospital.onrender.com/GestionHospital/agregarTratamiento/' + pacienteId, {
+            const response = await axios.post(`https://proyectohospital.onrender.com/GestionHospital/agregarTratamiento/${pacienteId}`, {
                 descripcion,
                 medicacion: [medicacion],
                 procedimientos: [procedimientos],
@@ -21,29 +20,42 @@ const AgregarTratamiento = ({ pacienteId }) => {
                 fecha_fin: fechaFin
             });
             console.log(response.data);
-            // Aquí podrías manejar la respuesta de tu servidor
+            alert('Tratamiento agregado')
         } catch (error) {
             console.error(error);
-            // Aquí podrías manejar el error
+            alert('Error al agregar tratamiento')
         }
     };
 
     return (
-        <View>
-            <Text>Descripción:</Text>
-            <TextInput value={descripcion} onChangeText={setDescripcion} />
-            <Text>Medicación:</Text>
-            <TextInput value={medicacion} onChangeText={setMedicacion} />
-            <Text>Procedimientos:</Text>
-            <TextInput value={procedimientos} onChangeText={setProcedimientos} />
-            <Text>Recomendaciones:</Text>
-            <TextInput value={recomendaciones} onChangeText={setRecomendaciones} />
-            <Text>Fecha de inicio:</Text>
-            <TextInput value={fechaInicio} onChangeText={setFechaInicio} />
-            <Text>Fecha de fin:</Text>
-            <TextInput value={fechaFin} onChangeText={setFechaFin} />
-            <Button title="Agregar Tratamiento" onPress={agregarTratamiento} />
-        </View>
+        <div>
+            <h2>Agregar Tratamiento</h2>
+            <div>
+                <label>Descripción:</label>
+                <input value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
+            </div>
+            <div>
+                <label>Medicación:</label>
+                <input value={medicacion} onChange={(e) => setMedicacion(e.target.value)} />
+            </div>
+            <div>
+                <label>Procedimientos:</label>
+                <input value={procedimientos} onChange={(e) => setProcedimientos(e.target.value)} />
+            </div>
+            <div>
+                <label>Recomendaciones:</label>
+                <input value={recomendaciones} onChange={(e) => setRecomendaciones(e.target.value)} />
+            </div>
+            <div>
+                <label>Fecha de inicio:</label>
+                <input type="date" value={fechaInicio} onChange={(e) => setFechaInicio(e.target.value)} />
+            </div>
+            <div>
+                <label>Fecha de fin:</label>
+                <input type="date" value={fechaFin} onChange={(e) => setFechaFin(e.target.value)} />
+            </div>
+            <button onClick={agregarTratamiento}>Agregar Tratamiento</button>
+        </div>
     );
 };
 

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
 import axios from 'axios';
 
 const AgregarHospitalizacion = ({ pacienteId }) => {
@@ -9,29 +8,34 @@ const AgregarHospitalizacion = ({ pacienteId }) => {
 
     const agregarHospitalizacion = async () => {
         try {
-            const response = await axios.post('https://proyectohospital.onrender.com/GestionHospital/agregarHospitalizacion/' + pacienteId, {
+            const response = await axios.post(`https://proyectohospital.onrender.com/GestionHospital/agregarHospitalizacion/${pacienteId}`, {
                 fecha_ingreso: fechaIngreso,
                 fecha_alta: fechaAlta,
                 detalles_tratamiento: detallesTratamiento
             });
             console.log(response.data);
-            // Aquí podrías manejar la respuesta de tu servidor
         } catch (error) {
             console.error(error);
-            // Aquí podrías manejar el error
         }
     };
 
     return (
-        <View>
-            <Text>Fecha de ingreso:</Text>
-            <TextInput value={fechaIngreso} onChangeText={setFechaIngreso} />
-            <Text>Fecha de alta:</Text>
-            <TextInput value={fechaAlta} onChangeText={setFechaAlta} />
-            <Text>Detalles del tratamiento:</Text>
-            <TextInput value={detallesTratamiento} onChangeText={setDetallesTratamiento} />
-            <Button title="Agregar Hospitalización" onPress={agregarHospitalizacion} />
-        </View>
+        <div>
+            <h2>Agregar Hospitalización</h2>
+            <div>
+                <label>Fecha de ingreso:</label>
+                <input type="date" value={fechaIngreso} onChange={(e) => setFechaIngreso(e.target.value)} />
+            </div>
+            <div>
+                <label>Fecha de alta:</label>
+                <input type="date" value={fechaAlta} onChange={(e) => setFechaAlta(e.target.value)} />
+            </div>
+            <div>
+                <label>Detalles del tratamiento:</label>
+                <input value={detallesTratamiento} onChange={(e) => setDetallesTratamiento(e.target.value)} />
+            </div>
+            <button onClick={agregarHospitalizacion}>Agregar Hospitalización</button>
+        </div>
     );
 };
 
