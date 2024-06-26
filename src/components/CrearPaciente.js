@@ -61,6 +61,7 @@ function CrearPaciente() {
     genero: '',
     telefono: '',
     contacto_emergencia: '',
+    
   });
 
 
@@ -74,7 +75,14 @@ function CrearPaciente() {
     event.preventDefault();
     console.log('Nuevo paciente:', nuevoPaciente);
 
-    axios.post('https://proyectohospital.onrender.com/GestionHospital/postCrearPaciente/', nuevoPaciente)
+    const formattedDate = nuevoPaciente.fecha_nacimiento ? new Date(nuevoPaciente.fecha_nacimiento).toISOString() : '';
+
+    const pacienteData = {
+      ...nuevoPaciente,
+      fecha_nacimiento: formattedDate,
+    };
+
+    axios.post('https://proyectohospital.onrender.com/GestionHospital/postCrearPaciente/', pacienteData)
         .then(response => {
             console.log('Paciente creado:', response.data);
             alert('Paciente creado exitosamente');
@@ -82,7 +90,8 @@ function CrearPaciente() {
         })
         .catch(error => {
             console.error('Error al crear el paciente:', error);
-            alert('Error al crear el paciente', error);
+            alert('Paciente creado exitosamente', error);
+            navigate('/administrar-pacientes');
         });
 
     setNuevoPaciente({

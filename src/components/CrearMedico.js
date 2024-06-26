@@ -61,6 +61,8 @@ function CrearMedico() {
     genero: '',
     telefono: '',
     especialidad: '',
+    horarioEntrada: null, 
+    horarioSalida: null, 
     matricula: '',
   });
 
@@ -93,6 +95,8 @@ function CrearMedico() {
       genero: '',
       telefono: '',
       especialidad: '',
+      horarioEntrada: null, 
+      horarioSalida: null, 
       matricula: '',
     });
   };

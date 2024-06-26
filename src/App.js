@@ -7,6 +7,7 @@ import AdministrarPacientes from './components/AdministrarPacientes';
 import AdministrarMedicos from './components/AdministrarMedicos';
 import AdministrarTurnos from './components/AdministrarTurnos';
 import VerHistorialMedico from './components/VerHistorialMedico';
+import VerHistorialMedicoAdmin from './components/VerHistorialMedicoAdmin';
 import VerTurnos from './components/VerTurnos';
 import CrearPaciente from './components/CrearPaciente';
 import VisualizarPaciente from './components/VisualizarPaciente';
@@ -18,6 +19,7 @@ import VisualizarAdministrativo from './components/VisualizarAdministrativo';
 import AdministrarUsuarios from './components/AdministrarUsuarios';
 import AgendarCita from './components/AgendarCita';
 import HistorialMedicoDetalle from './components/HistorialMedicoDetalle';
+import HistorialMedicoDetalleAdmin from './components/HistorialMedicoDetalleAdmin';
 import AgregarTratamiento from './components/AgregarTratamiento';
 import AgregarDiagnostico from './components/AgregarDiagnostico';
 import AgregarHospitalizacion from './components/AgregarHospitalizacion';
@@ -49,6 +51,8 @@ function App() {
         <Route path="/historial/:pacienteId/agregar-tratamiento" element={<AgregarTratamiento />} />
         <Route path="/historial/:pacienteId/agregar-hospitalizacion" element={<AgregarHospitalizacion />} />
         <Route path="/historial/:pacienteId/agregar-diagnostico" element={<AgregarDiagnostico />} />
+        <Route path="/ver-historial-medicoADM" element={<VerHistorialMedicoAdmin />} />
+        <Route path="/historialADM/:pacienteId" element={<HistorialMedicoDetalleAdmin />} />
       </Routes>
     </Router>
   );

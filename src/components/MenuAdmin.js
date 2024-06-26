@@ -107,7 +107,7 @@ function MenuAdmin() {
           <div style={styles.menuOption} onClick={() => navigate('/Agendar-Cita')}>
             Agendar Cita
           </div>
-          <div style={styles.menuOption} onClick={() => navigate('/ver-historial-medico')}>
+          <div style={styles.menuOption} onClick={() => navigate('/ver-historial-medicoADM')}>
             Ver Historial Médico
           </div>
         </div>

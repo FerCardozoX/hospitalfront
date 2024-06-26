@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ValidarPaciente from './ValidarPaciente';
 import SeleccionarMedico from './SeleccionarMedico';
 import CrearCita from './CrearCita';
+import { useNavigate} from 'react-router-dom';
 
 const styles = {
     container: {
@@ -41,12 +42,19 @@ const styles = {
     }
 };
 
+
 const AgendarCita = () => {
     const [paciente, setPaciente] = useState(null);
     const [medico, setMedico] = useState(null);
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate(-1);
+      };
 
     return (
         <div style={styles.container}>
+            <button onClick={handleClick}>Volver atrás</button>
             <h1 style={styles.title}>Agendar Cita Médica</h1>
             <ValidarPaciente setPaciente={setPaciente} />
             {paciente && (
